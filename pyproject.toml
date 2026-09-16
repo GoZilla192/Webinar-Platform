@@ -1,0 +1,15 @@
+[project]
+name = "webinar-platform"
+version = "0.1.0"
+requires-python = "==3.12.12"
+dependencies = [
+    "alembic>=1.20.0",
+    "asyncpg>=0.31.0",
+    "fastapi[standard]>=0.141.1",
+    "sqlalchemy>=2.0.54",
+
+]
+[dependency-groups]
+dev = [
+    "aiosqlite>=0.22.1",
+]
