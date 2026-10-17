@@ -5,6 +5,10 @@ from app.livekit.settings import LiveKitSettings
 
 
 def get_livekit_settings() -> LiveKitSettings:
+	"""
+	For FastAPI Dependency Injection mechanism
+	If I will change LiveKitSetting, I will change this function only
+	"""
 	return LiveKitSettings()
 
 
