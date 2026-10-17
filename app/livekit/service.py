@@ -1,20 +1,20 @@
-import uuid
 from livekit import api
 from datetime import timedelta
 
-from app.core.settings import LiveKitSettings
-from app.schemas.livekit import LiveKitTokenRequestSchema
+from app.livekit.settings import LiveKitSettings
+from app.livekit.schemas import LiveKitTokenRequestSchema
 
 lks = LiveKitSettings()
+
 
 class LiveKitService:
 	def get_token(self, token_request: LiveKitTokenRequestSchema):
 		grants = api.VideoGrants(
-	        room_join=True,
-	        room=token_request.room_name,
-	        can_publish=token_request.is_host,
-	        can_subscribe=True,
-	    )
+			room_join=True,
+			room=token_request.room_name,
+			can_publish=token_request.is_host,
+			can_subscribe=True,
+		)
 		
 		token = (
 			api.AccessToken(lks.LIVEKIT_API_KEY, lks.LIVEKIT_API_SECRET)
@@ -26,6 +26,3 @@ class LiveKitService:
 		)
 		
 		return {"token": token, "url": lks.LIVEKIT_URL}
-		
-		
-		

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.routers.livekit import router as livekit_router
+from app.livekit.routes import router as livekit_router
 
 
 app = FastAPI()

@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends
 
-from app.schemas.livekit import LiveKitTokenRequestSchema
-from app.services.livekit import LiveKitService
-from app.dependencies.livekit import get_livekit_service
+from app.livekit.schemas import LiveKitTokenRequestSchema
+from app.livekit.service import LiveKitService
+from app.livekit.depends import get_livekit_service
 
 router = APIRouter(tags=["LiveKit Server"])
 
@@ -13,4 +13,3 @@ async def get_livekit_token(
 		livekit_service: LiveKitService = Depends(get_livekit_service)
 ):
 	return livekit_service.get_token(token_request)
-	
