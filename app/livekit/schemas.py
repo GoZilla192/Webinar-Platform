@@ -6,3 +6,8 @@ class LiveKitTokenRequestSchema(BaseModel):
 	is_host: bool
 	name: str
 	identity: str
+
+
+class LiveKitTokenResponseSchema(BaseModel):
+	access_token: str
+	wss_url: str

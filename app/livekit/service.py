@@ -2,14 +2,14 @@ from livekit import api
 from datetime import timedelta
 
 from app.livekit.settings import LiveKitSettings
-from app.livekit.schemas import LiveKitTokenRequestSchema
+from app.livekit.schemas import LiveKitTokenRequestSchema, LiveKitTokenResponseSchema
 
 
 class LiveKitService:
 	def __init__(self, settings: LiveKitSettings):
 		self.settings = settings
 	
-	def get_token(self, token_request: LiveKitTokenRequestSchema):
+	def get_token(self, token_request: LiveKitTokenRequestSchema) -> LiveKitTokenResponseSchema:
 		grants = api.VideoGrants(
 			room_join=True,
 			room=token_request.room_name,
@@ -26,4 +26,7 @@ class LiveKitService:
 			.to_jwt()
 		)
 		
-		return {"token": token, "url": self.settings.LIVEKIT_URL}
+		return LiveKitTokenResponseSchema(
+			access_token=token,
+			wss_url=self.settings.LIVEKIT_URL
+		)
